@@ -11,9 +11,14 @@
         <delete dir="${build.dir}"/>
     </target>
 
+    <!-- executable and fork properties added as a workaround for CSE's ant configuration -->  
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
-        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}"/>
+        <javac includeantruntime="false" 
+        	   executable="/usr/bin/javac"
+        	   fork="true"
+        	   srcdir="${src.dir}" 
+        	   destdir="${classes.dir}"/>
     </target>
 
     <path id="run.path">
