@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="CSCE155 - Java - Arrays and Dynamic Memory Lab" basedir="." default="run-memLeakA">
 
-    <property name="src.dir" value="src"/> 
+    <property name="src.dir" value="src/demo/java"/> 
     <property name="build.dir" value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/> 
-    <property name="statistics.main" value="unl.cse.memory.Statistics"/>
     <property name="memory.leak.demo.a" value="unl.cse.memory.MemoryLeakA"/>
     <property name="memory.leak.demo.b" value="unl.cse.memory.MemoryLeakB"/>
 
@@ -25,13 +24,6 @@
     <path id="run.path">
       <pathelement path="${classes.dir}"/>
     </path>
-
-    <target name="run-stats">
-       <java classname="${statistics.main}"
-             fork="false">
-         <classpath refid="run.path"/>
-       </java>
-    </target>
 
     <target name="run-memLeakA">
        <java classname="${memory.leak.demo.a}"
