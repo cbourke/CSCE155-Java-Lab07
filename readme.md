@@ -156,8 +156,8 @@ message = null;
 ```
 
 The code snippet above allocates new memory space to hold the
-`String`{.java} object containing the `"Hello World!"`{.java} message.
-The variable message is holding a reference to that `String`{.java}
+`String` object containing the `"Hello World!"` message.
+The variable message is holding a reference to that `String`
 object; it points to the memory location where the string is being
 stored. In the second line when we reassign what the message variable is
 pointing to (to null) then all references to that original memory
@@ -197,71 +197,7 @@ for(int i=0; i<table.length; i++) {
 Clone the repository from GitHub containing the code for this lab by using
 the following URL: https://github.com/cbourke/CSCE155-C-Lab07
 
-## Observing Garbage Collection
-
-For this exercise, we'll observe a memory leak in action and fix it.  To
-do so, you may need to work from a linux-based command line (not Eclipse).
-
-### Instructions
-
-1.  Open the `MemoryLeakA.java` source file and familiarize
-    yourself with what it does.
-
-2.  Move to the project's root directory, `CSCE155-Java-Lab07`
-
-3.  Compile and build the project using the Apache Ant build script
-    (`build.xml`) by executing the following on the command line:
-    `ant compile`
-
-4.  Now run the program by executing the following from the command
-    line:
-
-    `java -cp build/classes unl.cse.memory.MemoryLeakA 10`
-
-5.  Reopen the source file and comment out the line that prints the
-    $i$-th order statistic; recompile with the same ant command
-
-6.  Now run the program by executing the following from the command line
-    (this will log information on when Java's garbage collector is
-    executing and how it affects memory):
-
-    `java -verbose:gc -XX:+PrintGCDetails -cp build/classes unl.cse.memory.MemoryLeakA 1000000`
-
-7.  Observe the output for a couple of minutes, but ultimately you may
-    have to kill your program (control-c)
-
-8.  Answer the questions in your handout.
-
-## Breaking Garbage Collection
-
-Java's garbage collection relieves the user from having to worry about
-cleaning up memory, but it does not mean that we can ignore dynamic
-memory issues altogether in Java. Java can still have "memory leaks" if
-poorly written code holds on to references even though it no longer
-needs them. If objects and data continue to have valid references, they
-are not eligible for garbage collection and remain resident in memory.
-In this exercise we'll observe such a situation.
-
-### Instructions
-
-1.  Open the `MemoryLeakB.java` source file and compare that to
-    the other demo file--what are the key differences?
-
-2.  Execute this program in the background from the command line via the
-    following (the ampersand runs the process in the background):
-
-    `java -cp build/classes unl.cse.memory.MemoryLeakB 1000000 &`
-
-3.  To monitor how much memory your program is using, start the top
-    program: `top -u login` where `login` is replaced with
-    your cse login. Your Java process should be the top process.
-
-4.  Observe the performance of your program for a couple of minutes and
-    then kill it: quit top by typing 'q' then type the command
-    `kill 1234` where `1234` is the ID of your Java
-    process (first column in top).
-
-## More Exercises
+## Exercises
 
 You will now get some practice by implementing several more
 utility methods.  For each method in the `ListUtils` class:
@@ -316,3 +252,74 @@ be able to utilize others.
   handin and verify your program is correct by using the grader.
 * Even if you worked with a partner, you *both* need to
   turn in all files.
+
+## Advanced Activity: Garbage Collection
+
+For this exercise, we'll observe the garbage collection in Java in
+action and witness/fix a memory leak in Java.  To do this activity,
+you'll need to clone the repo at the command line one a system that
+supports: `ant`, `java`, and `htop` (the CSE server has all of these).
+
+### Instructions
+
+1.  Open the `MemoryLeakA.java` source file and familiarize
+    yourself with what it does.
+
+2.  Move to the project's root directory, `CSCE155-Java-Lab07`
+
+3.  Compile and build the project using the Apache Ant build script
+    (`build.xml`) by executing the following on the command line:
+    `ant compile`
+
+4.  Now run the program by executing the following from the command
+    line:
+
+    `java -cp build/classes unl.cse.memory.MemoryLeakA 10`
+
+5.  Reopen the source file and comment out the line that prints the
+    $i$-th order statistic (this is so that we don't have too much
+    output for what we're about to do); recompile with the same
+    `ant compile` command
+
+6.  Now run the program by executing the following from the command line
+    (this will log information on when Java's garbage collector is
+    executing and how it affects memory):
+
+    `java -verbose:gc -XX:+PrintGCDetails -cp build/classes unl.cse.memory.MemoryLeakA 1000000`
+
+7.  Observe the output for a couple of minutes.  Every so often you'll
+    see the garbage collector run with reports that indicate how much
+    memory was cleaned up.  For example somewhere in the report
+    would be a statistic like `505M->8M(2032M)` indicating that the
+    Java Virtual Machine was using 505 megabytes and after garbage collection,
+    it was only using 8 megabytes.  You can kill this program after your
+    observations using control-c.
+
+## Breaking Garbage Collection
+
+Java's garbage collection relieves the user from having to worry about
+cleaning up memory, but it does not mean that we can ignore dynamic
+memory issues altogether in Java. Java can still have "memory leaks" if
+poorly written code holds on to references even though it no longer
+needs them. If objects and data continue to have valid references, they
+are not eligible for garbage collection and remain resident in memory.
+In this exercise we'll observe such a situation.
+
+### Instructions
+
+1.  Open the `MemoryLeakB.java` source file and compare that to
+    the other demo file--what are the key differences?
+
+2.  Execute this program in the background from the command line via the
+    following (the ampersand runs the process in the background):
+
+    `java -cp build/classes unl.cse.memory.MemoryLeakB 1000000 &`
+
+3.  To monitor how much memory your program is using, start the top
+    program: `htop -u login` where `login` is replaced with
+    your cse login. Your Java process should be the top process.
+
+4.  Observe the performance of your program for a couple of minutes and
+    then kill it: quit top by typing 'q' then type the command
+    `kill 1234` where `1234` is the ID of your Java
+    process (first column in top).
