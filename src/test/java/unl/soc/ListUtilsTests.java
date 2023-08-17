@@ -1,4 +1,4 @@
-package unl.cse;
+package unl.soc;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,11 +18,11 @@ public class ListUtilsTests {
 	/**
 	 * Test Lists
 	 */
-	public static final List<Integer> TEST_LIST_001 = List.of(8, 3, 5, 2, 1, 3, 9, 1);
-	public static final List<Integer> TEST_LIST_002 = List.of(-8, -3, -5, -2, -1, -3, -9, -1);
-	public static final List<Integer> TEST_LIST_003 = List.of(100, 0, -100);
-	public static final List<Integer> TEST_LIST_004 = List.of(-100, 0, 100);
-	public static final List<Integer> TEST_LIST_005 = List.of(1, 2, 3, 4, 5, 6, 7, 8);
+	public static final List<Integer> TEST_LIST_001 = Arrays.asList(8, 3, 5, 2, 1, 3, 9, 1);
+	public static final List<Integer> TEST_LIST_002 = Arrays.asList(-8, -3, -5, -2, -1, -3, -9, -1);
+	public static final List<Integer> TEST_LIST_003 = Arrays.asList(100, 0, -100);
+	public static final List<Integer> TEST_LIST_004 = Arrays.asList(-100, 0, 100);
+	public static final List<Integer> TEST_LIST_005 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
 
 	//  TEST_LIST_001
 	
@@ -94,7 +94,7 @@ public class ListUtilsTests {
 	@Test
 	public void testFilterThreshold001() {
 
-		List<Integer> expected = List.of(8, 5, 9);
+		List<Integer> expected = Arrays.asList(8, 5, 9);
 		List<Integer> actual = ListUtils.filterThreshold(TEST_LIST_001, 5);
 		assertEquals(expected, actual);
 	}
@@ -168,7 +168,7 @@ public class ListUtilsTests {
 	@Test
 	public void testFilterThreshold002() {
 
-		List<Integer> expected = List.of(-3, -5, -2, -1, -3, -1);
+		List<Integer> expected = Arrays.asList(-3, -5, -2, -1, -3, -1);
 		List<Integer> actual = ListUtils.filterThreshold(TEST_LIST_002, -5);
 		assertEquals(expected, actual);
 	}
@@ -242,7 +242,7 @@ public class ListUtilsTests {
 	@Test
 	public void testFilterThreshold003() {
 
-		List<Integer> expected = List.of(100, 0);
+		List<Integer> expected = Arrays.asList(100, 0);
 		List<Integer> actual = ListUtils.filterThreshold(TEST_LIST_003, 0);
 		assertEquals(expected, actual);
 	}
@@ -316,7 +316,7 @@ public class ListUtilsTests {
 	@Test
 	public void testFilterThreshold004() {
 
-		List<Integer> expected = List.of(0, 100);
+		List<Integer> expected = Arrays.asList(0, 100);
 		List<Integer> actual = ListUtils.filterThreshold(TEST_LIST_004, 0);
 		assertEquals(expected, actual);
 	}
@@ -390,7 +390,7 @@ public class ListUtilsTests {
 	@Test
 	public void testFilterThreshold005() {
 
-		List<Integer> expected = List.of(7, 8);
+		List<Integer> expected = Arrays.asList(7, 8);
 		List<Integer> actual = ListUtils.filterThreshold(TEST_LIST_005, 7);
 		assertEquals(expected, actual);
 	}

@@ -1,4 +1,4 @@
-package unl.cse.memory;
+package unl.soc.memory;
 
 public class OrderStatisticUtils {
 

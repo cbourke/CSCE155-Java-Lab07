@@ -1,4 +1,4 @@
-package unl.cse.memory;
+package unl.soc.memory;
 
 import java.util.HashSet;
 import java.util.Random;
